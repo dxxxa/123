@@ -1,4 +1,3 @@
-![alt text](images/python_logo.ico) 
 # Python Code Tutorials
 This is a repository of all the tutorials of [The Python Code] / Это репозиторий всех учебных пособий веб-сайта [Код Python] (https://www..com) website.
 ## List of Tutorials / Список учебных пособий
