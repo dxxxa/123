@@ -2,10 +2,9 @@
 # Python Code Tutorials
 This is a repository of all the tutorials of [The Python Code](https://www.thepythoncode.com) website.
 ## List of Tutorials
-- ### [Ethical Hacking] / [Этический взлом](https://www.thepythoncode.com/topic/ethical-hacking)
 - ### [[Ethical Hacking] / [Этический взлом]](https://www.thepythoncode.com/topic/ethical-hacking)
 
-    -  ### [Scapy] / [Скапи](https://www.thepythoncode.com/topic/scapy)
+    -  ### [[Scapy] / [Скапи]](https://www.thepythoncode.com/topic/scapy)
         - [Getting Started With Scapy: Python Network Manipulation Tool] / [Начало работы со Scapy: инструмент для управления сетью] (https://www.thepythoncode.com/article/getting-started-with-scapy)
         - [Building an ARP Spoofer] / [Создание ARP Spoofer] (https://www.thepythoncode.com/article/building-arp-spoofer-using-scapy). ([code](scapy/arp-spoofer))
         - [Detecting ARP Spoof attacks] / [Обнаружение атак ARP Spoof] (https://www.thepythoncode.com/article/detecting-arp-spoof-attacks-using-scapy). ([code](scapy/arp-spoof-detector))
@@ -45,8 +44,8 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Machine Learning] / [Машинное обучение] (https://www.thepythoncode.com/topic/machine-learning)
-    - ### [Natural Language Processing] / [Обработка естественного языка] (https://www.thepythoncode.com/topic/nlp)
+- ### [[Machine Learning] / [Машинное обучение]] (https://www.thepythoncode.com/topic/machine-learning)
+    - ### [[Natural Language Processing] / [Обработка естественного языка]] (https://www.thepythoncode.com/topic/nlp)
         - [Spam Classifier using Keras] / [Классификатор спама с помощью Keras] (https://www.thepythoncode.com/article/build-spam-classifier-keras-python). ([code](machine-learning/nlp/spam-classifier))
         - [Text Generator using TensorFlow and Keras] / [Генератор текста с помощью TensorFlow и Keras] (https://www.thepythoncode.com/article/text-generation-keras-python). ([code](machine-learning/nlp/text-generator))
         - [How to Perform Text Classification in Python using Tensorflow 2 and Keras] / [Классификация текста с помощью Tensorflow 2 и Keras] (https://www.thepythoncode.com/article/text-classification-using-tensorflow-2-and-keras-in-python). ([code](machine-learning/nlp/text-classification))
@@ -63,7 +62,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
         - [Named Entity Recognition using Transformers and Spacy] / [Распознавание именованных сущностей с помощью Transformers и Spacy] (https://www.thepythoncode.com/article/named-entity-recognition-using-transformers-and-spacy). ([code](machine-learning/nlp/named-entity-recognition))
         - [Tokenization, Stemming, and Lemmatization] / [Токенизация, stemming и лемматизация] (https://www.thepythoncode.com/article/tokenization-stemming-and-lemmatization-in-python). ([code](machine-learning/nlp/tokenization-stemming-lemmatization))
 
-    - ### [Computer Vision] / [Компьютерное зрение] (https://www.thepythoncode.com/topic/computer-vision)
+    - ### [[Computer Vision] / [Компьютерное зрение]] (https://www.thepythoncode.com/topic/computer-vision)
         - [How to Detect Human Faces in Python using OpenCV] / [Обнаружение человеческих лиц с помощью OpenCV] (https://www.thepythoncode.com/article/detect-faces-opencv-python). ([code](machine-learning/face_detection))
         - [Image Classifier in Python using TensorFlow and Keras] / [Создание классификатора изображений с помощью TensorFlow и Keras] (https://www.thepythoncode.com/article/image-classification-keras-python). ([code](machine-learning/image-classifier))
         - [How to Use Transfer Learning for Image Classification using Keras] / [Обучение передаче для классификации изображений с помощью Keras] (https://www.thepythoncode.com/article/use-transfer-learning-for-image-flower-classification-keras-python). ([code](machine-learning/image-classifier-using-transfer-learning))
@@ -112,7 +111,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [General Python Topics] / [Общие разделы по Python] (https://www.thepythoncode.com/topic/general-python-topics)
+- ### [[General Python Topics] / [Общие разделы по Python]] (https://www.thepythoncode.com/topic/general-python-topics)
     - [How to Make Facebook Messenger bot] / [Бот Facebook Messenger] (https://www.thepythoncode.com/article/make-bot-fbchat-python). ([code](general/messenger-bot))
     - [How to Get Hardware and System Information] / [Получение информации об оборудовании и системе] (https://www.thepythoncode.com/article/get-hardware-system-information-python). ([code](general/sys-info))
     - [How to Control your Mouse] / [Управление мышью] (https://www.thepythoncode.com/article/control-mouse-python). ([code](general/mouse-controller))
@@ -140,7 +139,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Web Scraping] / [Веб-парсинг] (https://www.thepythoncode.com/topic/web-scraping)
+- ### [[Web Scraping] / [Веб-парсинг]] (https://www.thepythoncode.com/topic/web-scraping)
     - [How to Access Wikipedia] / [Доступ к Википедии] (https://www.thepythoncode.com/article/access-wikipedia-python). ([code](web-scraping/wikipedia-extractor))
     - [How to Extract YouTube Data] / [Извлечение данных YouTube] (https://www.thepythoncode.com/article/get-youtube-data-python). ([code](web-scraping/youtube-extractor))
     - [How to Extract Weather Data from Google] / [Извлечение данных о погоде из Google] (https://www.thepythoncode.com/article/extract-weather-data-python). ([code](web-scraping/weather-extractor))
@@ -162,7 +161,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Python Standard Library] / [Стандартная библиотека Python] (https://www.thepythoncode.com/topic/python-standard-library)
+- ### [[Python Standard Library] / [Стандартная библиотека Python]] (https://www.thepythoncode.com/topic/python-standard-library)
     - [How to Transfer Files in the Network using Sockets] / [Передача файлов в сети с помощью сокетов] (https://www.thepythoncode.com/article/send-receive-files-using-sockets-python). ([code](general/transfer-files/))
     - [How to Compress and Decompress Files] / [Сжатие и распаковывка файлов] (https://www.thepythoncode.com/article/compress-decompress-files-tarfile-python). ([code](general/compressing-files))
     - [How to Use Pickle for Object Serialization] / [Использование Pickle для сериализации объектов] (https://www.thepythoncode.com/article/object-serialization-saving-and-loading-objects-using-pickle-python). ([code](general/object-serialization))
@@ -187,7 +186,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Using APIs] / [Использование API] (https://www.thepythoncode.com/topic/using-apis-in-python)
+- ### [[Using APIs] / [Использование API]] (https://www.thepythoncode.com/topic/using-apis-in-python)
     - [How to Automate your VPS or Dedicated Server Management] / [Автоматизация управления VPS или выделенным сервером] (https://www.thepythoncode.com/article/automate-veesp-server-management-in-python). ([code](general/automating-server-management))
     - [How to Download Torrent Files] / [Скачать торрент-файлы] (https://www.thepythoncode.com/article/download-torrent-files-in-python). ([code](general/torrent-downloader))
     - [How to Use Google Custom Search Engine API] / [Использование API пользовательской поисковой системы Google] (https://www.thepythoncode.com/article/use-google-custom-search-engine-api-in-python). ([code](general/using-custom-search-engine-api))
@@ -204,14 +203,14 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Database] / [База данных] (https://www.thepythoncode.com/topic/using-databases-in-python)
+- ### [[Database] / [База данных]] (https://www.thepythoncode.com/topic/using-databases-in-python)
     - [How to Use MySQL Database] / [Использование базы данных MySQL] (https://www.thepythoncode.com/article/using-mysql-database-in-python). ([code](database/mysql-connector))
     - [How to Connect to a Remote MySQL Database] / [Подключение к удаленной базе данных MySQL] (https://www.thepythoncode.com/article/connect-to-a-remote-mysql-server-in-python). ([code](database/connect-to-remote-mysql-server))
     - [How to Use MongoDB Database] / [База данных MongoDB] (https://www.thepythoncode.com/article/introduction-to-mongodb-in-python). ([code](database/mongodb-client))
 
 
 
-- ### [Handling PDF Files] / [Обработка PDF-файлов] (https://www.thepythoncode.com/topic/handling-pdf-files)
+- ### [[Handling PDF Files] / [Обработка PDF-файлов]] (https://www.thepythoncode.com/topic/handling-pdf-files)
     - [How to Extract All PDF Links] / [Извлечение всех ссылок PDF] (https://www.thepythoncode.com/article/extract-pdf-links-with-python). ([code](web-scraping/pdf-url-extractor))
     - [How to Extract PDF Tables] / [Извлечение таблицы PDF] (https://www.thepythoncode.com/article/extract-pdf-tables-in-python-camelot). ([code](general/pdf-table-extractor))
     - [How to Extract Images from PDF] / [Извлечение изображения из PDF] (https://www.thepythoncode.com/article/extract-pdf-images-in-python). ([code](web-scraping/pdf-image-extractor))
@@ -232,7 +231,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Python for Multimedia] / [Python для мультимедиа] (https://www.thepythoncode.com/topic/python-for-multimedia)
+- ### [[Python for Multimedia] / [Python для мультимедиа]] (https://www.thepythoncode.com/topic/python-for-multimedia)
     - [Screen Recorder] / [Экранный рекордер] (https://www.thepythoncode.com/article/make-screen-recorder-python). ([code](general/screen-recorder))
     - [How to Generate and Read QR Code] / [Генерирация и чтение QR-код] (https://www.thepythoncode.com/article/generate-read-qr-code-python). ([code](general/generating-reading-qrcode))
     - [How to Play and Record Audio] / [Воспроизведение и записывать аудио] (https://www.thepythoncode.com/article/play-and-record-audio-sound-in-python). ([code](general/recording-and-playing-audio))
@@ -250,7 +249,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [Web Programming] / [Веб-программирование] (https://www.thepythoncode.com/topic/web-programming)
+- ### [[Web Programming] / [Веб-программирование]] (https://www.thepythoncode.com/topic/web-programming)
     - [Detecting Fraudulent Transactions in a Streaming Application using Kafka] / [Обнаружение мошеннических транзакций в потоковом приложении с помощью Kafka] (https://www.thepythoncode.com/article/detect-fraudulent-transactions-with-apache-kafka-in-python). ([code](general/detect-fraudulent-transactions))
     - [Asynchronous Tasks with Celery] / [Асинхронные задачи с сельдереем] (https://www.thepythoncode.com/article/async-tasks-with-celery-redis-and-flask-in-python). ([code](https://github.com/bassemmarji/flask_sync_async))
     - [CRUD App with Flask and SQLAlchemy] / [Приложение CRUD с помощью Flask и SQLAlchemy] (https://www.thepythoncode.com/article/building-crud-app-with-flask-and-sqlalchemy). ([code](web-programming/bookshop-crud-app-flask))
@@ -266,7 +265,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
 
 
 
-- ### [GUI Programming] / [Программирование графического интерфейса] (https://www.thepythoncode.com/topic/gui-programming)
+- ### [[GUI Programming] / [Программирование графического интерфейса]] (https://www.thepythoncode.com/topic/gui-programming)
     - [Text Editor using Tkinter] / [Текстовый редактор с помощью Tkinter] (https://www.thepythoncode.com/article/text-editor-using-tkinter-python). ([code](gui-programming/text-editor))
     - [Button using PyGame] / [Кнопка с помощью PyGame] (https://www.thepythoncode.com/article/make-a-button-using-pygame-in-python). ([code](gui-programming/button-in-pygame))
     - [Drawing Program] / [Программа для рисования] (https://www.thepythoncode.com/article/make-a-drawing-program-with-python). ([code](gui-programming/drawing-tool-in-pygame))
