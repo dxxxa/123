@@ -3,7 +3,7 @@
 This is a repository of all the tutorials of [The Python Code](https://www.thepythoncode.com) website.
 ## List of Tutorials
 - ### [Ethical Hacking] / [Этический взлом](https://www.thepythoncode.com/topic/ethical-hacking)
-- ### [Ethical Hacking / Этический взлом](https://www.thepythoncode.com/topic/ethical-hacking)
+- ### [[Ethical Hacking] / [Этический взлом]](https://www.thepythoncode.com/topic/ethical-hacking)
 
     -  ### [Scapy] / [Скапи](https://www.thepythoncode.com/topic/scapy)
         - [Getting Started With Scapy: Python Network Manipulation Tool] / [Начало работы со Scapy: инструмент для управления сетью] (https://www.thepythoncode.com/article/getting-started-with-scapy)
