@@ -47,28 +47,7 @@ to run this:
 Человек в средней ситуацииВ этот момент, как только жертва отправляет какой-либо пакет (например, HTTP-запрос), он сначала передается на машину злоумышленника. Затем он перенаправит пакет на шлюз, поэтому, как вы можете заметить, жертва не знает об этой атаке. Другими словами, они не смогут понять, что на них нападают.
 
 Ладно, хватит теории! Прежде чем мы начнем, вам необходимо установить необходимые библиотеки:
-- `pip3 install -r requirements.txt`
-- 
-    **Output**:
-    ```
-    usage: arp_spoof.py [-h] [-v] target host
 
-    ARP spoof script
-
-    positional arguments:
-    target         Victim IP Address to ARP poison
-    host           Host IP Address, the host you wish to intercept packets for
-                    (usually the gateway)
-
-    optional arguments:
-    -h, --help     show this help message and exit
-    -v, --verbose  verbosity, default is True (simple message each second)
-    ```
-    For instance, if you want to spoof **192.168.1.2** and the gateway is **192.168.1.1**:
-    ```
-    python3 arp_spoof 192.168.1.2 192.168.1.1 --verbose
-    ```
-- 
     ```
 	pip3 install scapy
     ```
