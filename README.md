@@ -3,6 +3,24 @@
 This is a repository of all the tutorials of [The Python Code](https://www.thepythoncode.com) website.
 ## List of Tutorials
 - ### [[Ethical Hacking] / [Этический взлом]](https://www.thepythoncode.com/topic/ethical-hacking)
+- [[Writing a Keylogger in Python from Scratch] / [Кейлоггер]](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
+    - [[Writing a Keylogger in Python from Scratch] / [Кейлоггер]](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
+
+    - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+        - [[Writing a Keylogger in Python from Scratch] / [Кейлоггер]](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
+    - [[Writing a Keylogger in Python from Scratch] / [Кейлоггер]](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
+
+    - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+        - [[Writing a Keylogger in Python from Scratch] / [Кейлоггер]](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
+
+        - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+            - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+                - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+                - [[Writing a Keylogger in Python from Scratch] / [Кейлоггер]](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
+
+
+
+- ### [[Ethical Hacking] / [Этический взлом]](https://www.thepythoncode.com/topic/ethical-hacking)
 
     -  ### [[Scapy] / [Скапи]](https://www.thepythoncode.com/topic/scapy)
         - [[Getting Started With Scapy: Python Network Manipulation Tool] / [Начало работы со Scapy: инструмент для управления сетью]](https://www.thepythoncode.com/article/getting-started-with-scapy)
