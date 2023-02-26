@@ -25,5 +25,4 @@ to run this:
     python3 arp_spoof 192.168.1.2 192.168.1.1 --verbose
     ```
 ##
-This is a repository of all the tutorials of [The Python Code](https://www.thepythoncode.com) website.
-## List of Tutorials
+# [Building an ARP Spoofer](https://www.thepythoncode.com/article/building-arp-spoofer-using-scapy)
