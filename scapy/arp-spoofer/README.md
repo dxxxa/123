@@ -48,6 +48,13 @@ to run this:
 
 Ладно, хватит теории! Прежде чем мы начнем, вам необходимо установить необходимые библиотеки:
 
+to run this:
+- `pip3 install -r requirements.txt`
+- 
+    ```
+    python3 arp_spoof.py --help
+    ```
+    **Output**:
     ```
     usage: arp_spoof.py [-h] [-v] target host
 
@@ -61,6 +68,10 @@ to run this:
     optional arguments:
     -h, --help     show this help message and exit
     -v, --verbose  verbosity, default is True (simple message each second)
+    ```
+    For instance, if you want to spoof **192.168.1.2** and the gateway is **192.168.1.1**:
+    ```
+    python3 arp_spoof 192.168.1.2 192.168.1.1 --verbose
     ```
 
     ```
