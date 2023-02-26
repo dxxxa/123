@@ -25,7 +25,7 @@ to run this:
     python3 arp_spoof 192.168.1.2 192.168.1.1 --verbose
     ```
 ##
-# [Building an ARP Spoofer](https://www.thepythoncode.com/article/building-arp-spoofer-using-scapy)
+# [[Building an ARP Spoofer] / [Создание ARP Spoofer]](https://www.thepythoncode.com/article/building-arp-spoofer-using-scapy)
 Что такое ARP Спуфинг
 Короче говоря, это метод получения ситуации «человек посередине». Технически говоря, это метод, с помощью которого злоумышленник отправляет поддельные ARP-пакеты (ложные пакеты) в сеть (или конкретные хосты), позволяя злоумышленнику перехватывать, изменять или модифицировать сетевой трафик на лету.
 
