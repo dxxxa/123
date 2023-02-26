@@ -222,7 +222,7 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
     - [[How to Compress PDF Files] / [Сжатие PDF-файлов]](https://www.thepythoncode.com/article/compress-pdf-files-in-python). ([code](handling-pdf-files/pdf-compressor))
     - [[How to Encrypt and Decrypt PDF Files] / [Зашифровка и расшифровка PDF-файлов]](https://www.thepythoncode.com/article/encrypt-pdf-files-in-python). ([code](handling-pdf-files/encrypt-pdf))
     - [[How to Merge PDF Files] / [Объединение PDF-файлов]](https://www.thepythoncode.com/article/merge-pdf-files-in-python). ([code](handling-pdf-files/pdf-merger))
-    - [[How to Sign PDF Files] / Пподписание PDF-файлов]](https://www.thepythoncode.com/article/sign-pdf-files-in-python). ([code](handling-pdf-files/pdf-signer))
+    - [[How to Sign PDF Files] / [Подписание PDF-файлов]](https://www.thepythoncode.com/article/sign-pdf-files-in-python). ([code](handling-pdf-files/pdf-signer))
     - [[How to Extract PDF Metadata] / [Извлечение метаданных PDF]](https://www.thepythoncode.com/article/extract-pdf-metadata-in-python). ([code](handling-pdf-files/extract-pdf-metadata))
     - [[How to Split PDF Files] / [Разделение PDF-файлов]](https://www.thepythoncode.com/article/split-pdf-files-in-python). ([code](handling-pdf-files/split-pdf))
     - [[How to Extract Text from PDF] / [Извлечение текста из PDF]](https://www.thepythoncode.com/article/extract-text-from-pdf-in-python). ([code](handling-pdf-files/extract-text-from-pdf))
