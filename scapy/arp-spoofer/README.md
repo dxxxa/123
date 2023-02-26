@@ -1,4 +1,4 @@
-# [Building an ARP Spoofer](https://www.thepythoncode.com/article/building-arp-spoofer-using-scapy)
+# [Usage:]
 to run this:
 - `pip3 install -r requirements.txt`
 - 
