@@ -2,7 +2,7 @@
 # Python Code Tutorials
 This is a repository of all the tutorials of [The Python Code](https://www.thepythoncode.com) website.
 ## List of Tutorials
-- ### [[Ethical Hacking] / [Этический взлом]](https://www.thepythoncode.com/topic/ethical-hacking)
+- ### [[] / []](https://www.thepythoncode.com/topic/ethical-hacking)
     - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
     - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
 
@@ -11,18 +11,20 @@ This is a repository of all the tutorials of [The Python Code](https://www.thepy
         - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
             - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
 
-    - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+    - ### [[] / []](https://www.thepythoncode.com/topic/nlp)
         - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
         - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
             - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
 
-        - ### [[Natural Language Processing] / [Обработка естественного языка]](https://www.thepythoncode.com/topic/nlp)
+        - ### [[] / []](https://www.thepythoncode.com/topic/nlp)
             - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
             - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
                 - [[] / []](https://www.thepythoncode.com/article/write-a-keylogger-python). ([code](ethical-hacking/keylogger))
 
 
-
+##
+This is a repository of all the tutorials of [The Python Code](https://www.thepythoncode.com) website.
+## List of Tutorials
 - ### [[Ethical Hacking] / [Этический взлом]](https://www.thepythoncode.com/topic/ethical-hacking)
 
     -  ### [[Scapy] / [Скапи]](https://www.thepythoncode.com/topic/scapy)
