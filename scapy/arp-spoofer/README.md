@@ -48,12 +48,6 @@ to run this:
 
 Ладно, хватит теории! Прежде чем мы начнем, вам необходимо установить необходимые библиотеки:
 
-to run this:
-- `pip3 install -r requirements.txt`
-- 
-    ```
-    python3 arp_spoof.py --help
-    ```
     **Output**:
     ```
     usage: arp_spoof.py [-h] [-v] target host
