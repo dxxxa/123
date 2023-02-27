@@ -14,3 +14,5 @@ To run this:
     python live_recognizer.py 5
     ```
     This will record your talking in 5 seconds and then uploads the audio data to Google to get the desired output.
+##
+# [[] / []]()

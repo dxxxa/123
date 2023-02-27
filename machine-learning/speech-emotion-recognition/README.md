@@ -12,3 +12,5 @@ You can:
 When you modified anything, you can run `ser.py` to retrain the model.
 
 If you want to only use this efficiently, definitely check [Emotion Recognition using Speech](https://github.com/x4nth055/emotion-recognition-using-speech) repository which ease this process a lot.
+##
+# [[] / []]()

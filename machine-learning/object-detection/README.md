@@ -18,3 +18,5 @@ To run this:
     This will start detecting objects in that video, in the end, it'll save the resulting video to `output.avi`
 - If you wish to use PyTorch for GPU acceleration, please install PyTorch CUDA [here](https://pytorch.org/get-started) and use `yolo.py` file.
 - Feel free to edit the codes for your needs!
+##
+# [[] / []]()

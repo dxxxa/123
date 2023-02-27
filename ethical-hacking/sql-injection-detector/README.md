@@ -10,3 +10,5 @@ To run this:
     [!] Trying http://testphp.vulnweb.com/artists.php?artist=1"
     [+] SQL Injection vulnerability detected, link: http://testphp.vulnweb.com/artists.php?artist=1"
     ```
+##
+# [[] / []]()

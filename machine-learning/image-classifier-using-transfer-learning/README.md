@@ -20,3 +20,5 @@ To run this:
     and **plots**:
     ![Predicted Flowers](predicted-flowers.png)
     Check the [tutorial](https://www.thepythoncode.com/article/use-transfer-learning-for-image-flower-classification-keras-python) for more information.
+##
+# [[] / []]()

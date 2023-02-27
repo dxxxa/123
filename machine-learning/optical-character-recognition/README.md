@@ -26,3 +26,5 @@ To run this:
     <img src="detected-words-ocr.png" align="center">
 - For live camera, consider using `live_recognizer.py` script.
 
+##
+# [[] / []]()
