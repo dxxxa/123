@@ -1,0 +1,37 @@
+# dns_enumeration.py
+# Извлечение DNS-информации о доменном имени
+
+# https://www.thepythoncode.com/article/dns-enumeration-with-python
+# https://www.thepythoncode.com/code/dns-enumeration-with-python
+
+# все доступные записи DNS и их функции
+# https://en.wikipedia.org/wiki/List_of_DNS_record_types
+
+
+import dns.resolver  # pip install dnspython
+
+# Set the target domain and record type
+target_domain = "firpo.ru"
+record_types = ["A", "AAAA", "CNAME", "MX", "NS", "SOA", "TXT"]
+# Create a DNS resolver
+resolver = dns.resolver.Resolver()
+for record_type in record_types:
+    # Perform DNS lookup for the specified domain and record type
+    try:
+        answers = resolver.resolve(target_domain, record_type)
+    except dns.resolver.NoAnswer:
+        continue
+    # Print the answers
+    print(f"{record_type} records for {target_domain}:")
+    for rdata in answers:
+        print(f" {rdata}")
+
+# Запись MX (Mail Exchange) используется для идентификации серверов, ответственных за обработку входящих сообщений электронной почты для домена. В нашем случае мы четко видим, что этот домен использует сервис Outlook.
+
+# Для записи NS thepythoncode.com имеет четыре разных сервера доменных имен от ezoicns.com. Записи NS идентифицируют DNS-серверы, ответственные за обработку DNS-запросов для домена. Другими словами, когда клиент хочет найти IP-адрес (например, обычный веб-браузер) для thepythoncode.com, он запросит информацию на одном из этих DNS-серверов.
+
+# Записи SOA содержат административную информацию о зоне и другие сведения о конфигурации DNS, такие как срок жизни (TTL) для записей DNS.
+
+# Записи TXT хранят произвольные текстовые данные, связанные с доменом. В нашем случае записи TXT содержат различные проверочные коды и другую информацию, используемую различными службами для проверки того, что у них есть разрешение на доступ к доменному имени. Например, запись "google-site-verification=yJTOgIk39vl3779N3QhPF-mAR36QE00J6LdXHeID4fM" используется Google для проверки того, что владелец веб-сайта имеет разрешение на доступ к службам Google для своего домена.
+
+# Запись SPF (Sender Policy Framework) в записях TXT используется для защиты от нежелательной почты и спуфинга, поскольку они содержат инструкции по получению почтовых серверов о том,каким серверам разрешено отправлять электронную почту для определенного домена.
