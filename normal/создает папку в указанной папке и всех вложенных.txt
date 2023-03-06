@@ -1,9 +1,0 @@
-import os
-
-path = "C:\\1\\"
-rootfolder = "C:\\1\\"
-
-for path, _, _ in os.walk(rootfolder):
-    full_path_to_folder = os.path.join(path, 'Юниоры')
-    if not os.path.exists(full_path_to_folder):
-        os.mkdir(full_path_to_folder)
