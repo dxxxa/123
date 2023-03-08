@@ -1,0 +1,296 @@
+import os
+
+import secp256k1Crypto  # pip install secp256k1Crypto
+from Crypto.Hash import keccak  # pip install pycryptodome
+
+import requests
+
+
+
+
+def bin_convert():
+	bin = input("BINary to WIF\n>>>")
+	bin_to_dec = int(bin, 2)
+	bin_to_hex = hex(int(bin, 2))
+	print("DECimal  : ", bin_to_dec, "\nHEXadecimal : ", bin_to_hex, "\nBINary : ", bin)
+	print("---------------------------------------------------------------------------")
+	dec_to_eth_address(bin_to_dec)
+
+def dec_convert():
+	dec = int(input("DECimal to WIF\n>>>"))
+	dec_to_hex = hex(int(dec))
+	dec_to_bin = bin(int(dec))
+	print("DECimal  : ", dec, "\nHEXadecimal : ", dec_to_hex, "\nBINary : ", dec_to_bin)
+	print("---------------------------------------------------------------------------")
+	dec_to_eth_address(dec)
+
+def hex_convert():
+	hex = input("HEXadecimal to WIF\n>>>")
+	hex_to_dec = int(hex, 16)
+	hex_to_bin = bin(int(hex, 16))
+	print("DECimal  : ", hex_to_dec, "\nHEXadecimal : ", hex, "\nBINary : ", hex_to_bin)
+	print("---------------------------------------------------------------------------")
+	dec_to_eth_address(hex_to_dec)
+
+
+
+
+
+
+
+
+
+
+def dec_to_eth_address(number):
+	global PRIV_Key
+	PRIV_Key = number.to_bytes(32, byteorder='big').hex()
+
+	global dec_l
+	dec_l = int(PRIV_Key, 16)
+
+	# 1)secp256k1Crypto используется для генерации открытого ключа   2)Затем преобразуйте закрытый ключ в открытый ключ
+	private_key = PRIV_Key
+	private_key = bytes.fromhex(private_key)
+	privkey = secp256k1Crypto.PrivateKey(private_key)
+	privkey.pubkey.serialize(compressed=False).hex()  # '04dfa13518ff965498743f3a01439dd86bc34ff9969c7a3f0430bbf8865734252953c9884af787b2cadd45f92dff2b81e21cfdf98873e492e5fdc07e9eb67ca74d'
+	### 3 Вычислить хеш-значение открытого ключа
+	# Использовать алгоритм хеширования keccak256
+	# Удалите 04 из начала открытого ключа, преобразуйте оставшуюся часть в байтовую строку и используйте алгоритм keccak256 для хеширования:
+	keccak_hash = keccak.new(digest_bits=256)
+	public_key = privkey.pubkey.serialize(compressed=False).hex()[2:]  # '04dfa13518ff965498743f3a01439dd86bc34ff9969c7a3f0430bbf8865734252953c9884af787b2cadd45f92dff2b81e21cfdf98873e492e5fdc07e9eb67ca74d'[2:]
+	public_key = bytes.fromhex(public_key)
+	keccak_hash.update(public_key)  # <Crypto.Hash.keccak.Keccak_Hash object at 0x102960588>
+	h = keccak_hash.hexdigest()  # 39c0eb3b26d4838930b1f34babcd68033a72978c1084e2d44d1fa06ddc4a2d57
+
+	### 4 Получить адрес - Возьмите последние 40 букв шестнадцатеричной строки хеш-значения и добавьте 0x в начале, чтобы сгенерировать окончательный адрес Ethereum:
+	eth_address = "0x" + h[-40:]
+	global inp
+	inp = eth_address
+	print("Ethereum Address\nPRIV-Key :", PRIV_Key, "\nPUB-Key  :", eth_address)  # ВЫВОД в ЛОГ
+	print("---------------------------------------------------------------------------")  # ВЫВОД в ЛОГ
+######################################################################################################
+
+
+
+
+
+
+
+
+
+def net_eth_mew():
+	r = requests.get(f"https://tokenbalance.mewapi.io/eth?address={inp}")
+	tr = r.text[13:-4].split("\"},{\"")
+	print("Ethereum   Contracts :")
+	wsum = 0
+	for i in tr:
+		print(i[11:53], int(i[66:], 16))
+		value = int(i[66:], 16)
+		wsum += value
+	if wsum != 0:
+		file = open("output.txt", "a")
+		#file.write(f"DECimal : {number}\nPRIV-Key : {priv_key}\nPUB-Key : {inp}\n")
+		file.write("Ethereum ()   Contracts :\n")
+		for i in tr:
+			wallet = i[11:53]
+			value = int(i[66:], 16)
+			wsum += value
+			if value > 0:
+				file.write(wallet + " " + str(value) + "\n")
+		file.write("---------------------------------------------------------------------------\n\n")
+	print("---------------------------------------------------------------------------")
+
+
+
+
+
+
+
+
+def net_bsc_mew():
+	r = requests.get(f"https://tokenbalance.mewapi.io/bsc?address={inp}")
+	tr = r.text[13:-4].split("\"},{\"")
+	print("Binance Smart Chain   Contracts :")
+	wsum = 0
+	for i in tr:
+		print(i[11:53], int(i[66:], 16))
+		value = int(i[66:], 16)
+		wsum += value
+	if wsum != 0:
+		file = open("output.txt", "a")
+		#file.write(f"DECimal : {number}\nPRIV-Key : {priv_key}\nPUB-Key : {inp}\n")
+		file.write("Binance Smart Chain (BSC)   Contracts :\n")
+		for i in tr:
+			wallet = i[11:53]
+			value = int(i[66:], 16)
+			wsum += value
+			if value > 0:
+				file.write(wallet + " " + str(value) + "\n")
+		file.write("---------------------------------------------------------------------------\n\n")
+	print("---------------------------------------------------------------------------")
+
+
+
+
+
+
+
+
+
+def net_matic_mew():
+	r = requests.get(f"https://tokenbalance.mewapi.io/matic?address={inp}")
+	tr = r.text[13:-4].split("\"},{\"")
+	print("Polygon (Matic)   Contracts :")
+	wsum = 0
+	for i in tr:
+		print(i[11:53], int(i[66:], 16))
+		value = int(i[66:], 16)
+		wsum += value
+	if wsum != 0:
+		file = open("output.txt", "a")
+		#file.write(f"DECimal : {number}\nPRIV-Key : {priv_key}\nPUB-Key : {inp}\n")
+		file.write("Polygon (Matic)   Contracts :\n")
+		for i in tr:
+			wallet = i[11:53]
+			value = int(i[66:], 16)
+			wsum += value
+			if value > 0:
+				file.write(wallet + " " + str(value) + "\n")
+		file.write("---------------------------------------------------------------------------\n\n")
+	print("---------------------------------------------------------------------------")
+
+
+
+
+
+
+
+
+
+def all_net_mew():
+	my_list = ['eth', 'bsc', 'matic']
+	my_listt = my_list
+	my_listt = ['Ethereum', 'Binance Smart Chain', 'Polygon (Matic)']
+	for ii in range(0, 3):
+		third_elem = my_list[ii]
+		r = requests.get(f"https://tokenbalance.mewapi.io/{third_elem}?address={inp}")
+		tr = r.text[13:-4].split("\"},{\"")
+		if ii == 0:
+			print("Ethereum             Contracts :")
+		elif ii == 1:
+			print("Binance Smart Chain  Contracts :")
+		elif ii == 2:
+			print("Polygon (Matic)      Contracts :")
+		wsum = 0
+		for i in tr:
+			#print(i[11:53], int(i[66:], 16))
+			value = int(i[66:], 16)
+			wsum += value
+		if wsum != 0:
+			file = open("output.txt", "a")
+			file.write(f"DECimal  : {dec_l}\nPRIV-Key : {PRIV_Key}\nPUB-Key  : {inp}\n\n")
+			file.write(f"{my_listt[ii]}  Contracts :\n")
+			for i in tr:
+				wallet = i[11:53]
+				value = int(i[66:], 16)
+				wsum += value
+				if value > 0:
+					file.write(wallet + " " + str(value) + "\n")
+			file.write("---------------------------------------------------------------------------\n")
+		print("---------------------------------------------------------------------------")
+
+
+
+
+
+
+
+
+
+
+
+
+######################################################################################################
+def clear_files():
+	yes = 'y' in input("(Y)es/(N)o: ").lower().strip()
+	if not yes:
+		print("Not confirmed")
+	print('Deleting all .txt files')
+	files_in_directory = os.listdir(PROJECT_PATH)
+	filtered_files = [file for file in files_in_directory if file.endswith(".txt")]
+	for file in filtered_files:
+		if file not in ("input.txt", "changes.txt"):
+			path_to_file = os.path.join(PROJECT_PATH, file)
+			os.remove(path_to_file)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def main():
+	print("\nChecker MEW\n[1] Check One\n[2] Check List\n[3] Check Range\n[4] Check Random\n\n[5] Delete Output\n[q] Quit\n")
+
+	x = input(">>> ")
+	if x == "q":
+		exit(0)
+
+	elif x == "1":
+		print("\nCheck One\n[1] BINary to WIF\n[2] DECimal to WIF\n[3] HEXadecimal to WIF\n\n[b] Back\n[q] Quit\n")
+
+		y = input(">>> ")
+		if y == "q":
+			exit(0)
+
+		elif y == "1":  # BINary to WIF
+			bin_convert()
+			#net_eth_mew()
+			#net_bsc_mew()
+			#net_matic_mew()
+			all_net_mew()
+			main()
+		elif y == "2":  # DECimal to WIF
+			dec_convert()
+			#net_eth_mew()
+			#net_bsc_mew()
+			#net_matic_mew()
+			all_net_mew()
+			main()
+		elif y == "3":  # HEXadecimal to WIF
+			hex_convert()
+			#net_eth_mew()
+			#net_bsc_mew()
+			#net_matic_mew()
+			all_net_mew()
+			main()
+
+		elif y == "b":
+			main()
+		else:
+			print("Command not Recognized")
+
+	elif x == "2":
+		print("Check List")
+	elif x == "3":
+		print("Check Range")
+	elif x == "4":
+		print("Check Random")
+
+	elif x == "5":
+		clear_files()
+		main()
+
+	else:
+		print("Command not Recognized")
+main()

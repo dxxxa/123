@@ -1,0 +1,359 @@
+import os  # os для очистки экрана
+import sys
+import pytz
+from datetime import datetime
+from time import time, strftime, localtime
+
+# ГЕНЕРАЦИЯ
+import random  # 1
+import secp256k1Crypto  # 2   # pip install secp256k1Crypto
+from Crypto.Hash import keccak  # 3   # pip install pycryptodome
+
+# ПАРСИНГ
+import requests
+
+
+PROJECT_PATH = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + ("\\" if sys.platform == "win32" else "/")
+file_name = "Output_" + str(strftime("%d-%b_%H-%M-%S", localtime())) + ".txt"
+
+
+def set_file_name(new_file_name):  # НУЖНО ЛИ?!
+    global file_name
+    file_name = new_file_name
+
+
+# ADD wallet_net!!!
+# eth_net_mew()
+# bsc_net_mew()
+# matic_net_mew()
+
+
+def private_to_public(private_key):
+    private_key = bytes.fromhex(private_key.strip())
+    privkey = secp256k1Crypto.PrivateKey(private_key)
+    privkey.pubkey.serialize(compressed=False).hex()
+    keccak_hash = keccak.new(digest_bits=256)
+    public_key = privkey.pubkey.serialize(compressed=False).hex()[2:]
+    public_key = bytes.fromhex(public_key)
+    keccak_hash.update(public_key)
+    h = keccak_hash.hexdigest()
+    public_key = '0x' + h[-40:]
+    return public_key
+
+
+def dec_to_address_check_one(number):  # [1] Check One
+    print("DECimal  :", number)
+    private_key = number.to_bytes(32, byteorder='big').hex()
+    print("PRIV-Key :", private_key)
+    public_key = private_to_public(private_key)
+    print("PUB-Key  :", public_key, '\n')
+
+    r = requests.get(f"https://tokenbalance.mewapi.io/eth?address={public_key}")
+    tr = r.text[13:-4].split("\"},{\"")
+    print("Ethereum | Contracts | Balance")
+    wsum = 0
+    for i in tr:
+        print(i[11:53], int(i[66:], 16))
+        value = int(i[66:], 16)
+        wsum += value
+    if wsum != 0:
+        file = open("1_Output.txt", "a")
+        file.write(f"DECimal  : {number}\nPRIV-Key : {private_key}\nPUB-Key  : {public_key}\n\nEthereum | Contracts\n")
+        for i in tr:
+            wallet = i[11:53]
+            value = int(i[66:], 16)
+            wsum += value
+            if value > 0:
+                file.write(wallet + " " + str(value) + "\n")
+        file.write("---------------------------------------------------------------------------\n\n")
+
+    #with open(PROJECT_PATH + file_name, "a") as file:
+    #    r = requests.get(f"https://tokenbalance.mewapi.io/eth?address={public_key}")
+    #    tr = r.text[13:-4].split("\"},{\"")
+    #    wsum = 0
+    #    for i in tr:
+    #        print(i[11:53], int(i[66:], 16))  # ОТОБРАЖЕНИЕ БАЛАНСА
+    #        value = int(i[66:], 16)
+    #        wsum += value
+    #    if wsum != 0:
+    #        file.write(f"DECimal : {number}\nPRIV-Key : {private_key}\nPUB-Key : {public_key}\n")
+    #        for i in tr:
+    #            wallet = i[11:53]
+    #            value = int(i[66:], 16)
+    #            wsum += value
+    #            if value > 0:
+    #                file.write(wallet + " " + str(value) + "\n")
+    #        file.write("\n\n")
+#########################################################################
+#########################################################################
+#########################################################################
+def check_list_all_mew():  # [2] Check List
+    t = time()
+    file2 = open(PROJECT_PATH + "input.txt", "r")
+    for line in file2.readlines():
+        file = open(PROJECT_PATH + "output.txt", "a")
+        inp = line.strip()
+        r = requests.get(f"https://tokenbalance.mewapi.io/eth?address={inp}")
+        tr = r.text[13:-4].split("\"},{\"")
+        wsum = 0
+        for i in tr:
+            value = int(i[66:], 16)
+            wsum += value
+        if wsum != 0:
+            file.write(f"Wallet: {inp}" + "\n")
+            for i in tr:
+                wallet = i[11:53]
+                value = int(i[66:], 16)
+                wsum += value
+                if value > 0:
+                    file.write(wallet + " " + str(value) + "\n")
+            file.write("\n\n")
+    t2 = time()
+    print(t2 - t)
+#########################################################################
+#########################################################################
+#########################################################################
+
+
+def dec_to_address(number):  # [3] Check Range   [4] Check Random
+    print("DECimal  :", number)
+    private_key = number.to_bytes(32, byteorder='big').hex()
+    # print("PRIV-Key :", private_key)
+    public_key = private_to_public(private_key)
+    # print("PUB-Key  :", public_key, '\n')
+    test(public_key, number, private_key)
+
+
+def test(public_key, key_number, private_key):
+    with open(PROJECT_PATH + file_name, "a") as file:
+        r = requests.get(f"https://tokenbalance.mewapi.io/eth?address={public_key}")
+        tr = r.text[13:-4].split("\"},{\"")
+        wsum = 0
+        for i in tr:
+            value = int(i[66:], 16)
+            wsum += value
+        if wsum != 0:
+            file.write(f"DECimal : {key_number}\nPRIV-Key : {private_key}\nPUB-Key : {public_key}\n")
+            for i in tr:
+                wallet = i[11:53]
+                value = int(i[66:], 16)
+                wsum += value
+                if value > 0:
+                    file.write(wallet + " " + str(value) + "\n")
+            file.write("\n\n")
+########################################################################################################################
+# MENU
+def main():
+    set_file_name("Output_" + str(strftime("%d-%b_%H-%M-%S", localtime())) + ".txt")
+
+    print("MyEtherWallet | MEW\n"
+          "[1] Check One\n"
+          "[2] Check List\n"
+          "[3] Check Range\n"
+          "[4] Check Random\n\n"
+          "[5] Delete Output\n"
+          "[q] Quit\n")
+
+    x = input(">>> ")
+    if x == "q":
+        exit(0)
+
+    # [1] Check One
+    elif x == "1":
+        # os.system('cls')  # Clear scr
+        print("\nMyEtherWallet | Check One\n"
+              "[1] BINary to WIF\n"
+              "[2] HEXadecimal to WIF\n"
+              "[3] DECimal to WIF\n\n"
+              "[4] PRIV-Key\n"
+              "[5] PUB-Key\n\n"
+              "[b] Back\n"
+              "[q] Quit\n")
+
+        y = input(">>> ")
+        if y == "q":  # [q] Quit
+            exit(0)
+
+        elif y == "1":  # [1] BINary to WIF  # bin_convert()
+            bin_inp = input("BINary to WIF\n>>>")
+            t = time()
+            bin_to_dec = int(bin_inp, 2)
+            bin_to_hex = hex(int(bin_inp, 2))
+            print(f"DECimal : {bin_to_dec}\n"
+                  f"HEXadecimal : {bin_to_hex}\n"
+                  f"BINary : {bin_inp}\n"
+                  f"-----------------------------------------------")
+            dec_to_address_check_one(bin_to_dec)
+            t2 = time()
+            print(f"\nTime: {t2 - t}\n"
+                  f"-----------------------------------------------\n")
+            main()
+
+        elif y == "2":  # [2] HEXadecimal to WIF  # hex_convert()
+            hex_inp = input("HEXadecimal to WIF\n>>>")
+            t = time()
+            hex_to_dec = int(hex_inp, 16)
+            hex_to_bin = bin(int(hex_inp, 16))
+            print(f"DECimal : {hex_to_dec}\n"
+                  f"HEXadecimal : {hex_inp}\n"
+                  f"BINary : {hex_to_bin}\n"
+                  f"-----------------------------------------------")
+            dec_to_address_check_one(hex_to_dec)
+            t2 = time()
+            print(f"\nTime: {t2 - t}\n"
+                  f"-----------------------------------------------\n")
+            main()
+
+        elif y == "3":  # [3] DECimal to WIF  # dec_convert()
+            dec = int(input("DECimal to WIF\n>>>"))  # dec_number = int(input("DECimal :>>> ").strip()) РАЗНИЦА???
+            t = time()
+            dec_to_hex = hex(int(dec))
+            dec_to_bin = bin(int(dec))
+            print(f"DECimal : {dec}\n"
+                  f"HEXadecimal : {dec_to_hex}\n"
+                  f"BINary : {dec_to_bin}\n"
+                  f"-----------------------------------------------")
+            dec_to_address_check_one(dec)
+            t2 = time()
+            print(f"\nTime: {t2 - t}\n"
+                  f"-----------------------------------------------\n")
+            main()
+
+        elif y == "4":  # [4] PRIV-Key
+            private_key = input("PRIV-Key :>>> ").strip()
+            t = time()
+            private_to_dec = int(private_key, 16)  # PRIV-Key to DEC
+            print(private_to_dec)
+            dec_to_address_check_one(private_to_dec)
+            t2 = time()
+            print(f"Time: {t2 - t}\n"
+                  f"-----------------------------------------------\n")
+            main()
+
+        #########################################################################
+        elif y == "5":  # [5] PUB-Key           ИСПРАВИТЬ ВЫВОД!  НЕТ ЗАПИСИ В ФАЙЛ!!!
+            public_key = input("PUB-Key :>>> ").strip()
+            t = time()
+            test(public_key, 0, 0)  # Исправить запись в файл!!!
+            t2 = time()
+            print(f"Time: {t2 - t}\n"
+                  f"-----------------------------------------------\n")
+            main()
+        #########################################################################
+
+        elif y == "b":  # [b] Back
+            os.system('cls')
+            main()
+        else:
+            print("Command not Recognized")
+
+    # [2] Check List         # СЧЕТЧИК!!! СКОЛЬКО ПРОВЕРЕННЫХ И СКОЛЬКО ОСТАЛОСЬ!!! НА КАКОМ ОСТАНОВИЛСЯ!!!
+    elif x == "2":
+        # os.system('cls')  # Clear scr
+        while True:
+            print("MyEtherWallet | Check List")
+            st_time = datetime.fromtimestamp(time(), pytz.timezone("Europe/Moscow")).strftime("%A, %B %d, %Y %H:%M:%S")
+            t = time()
+            check_list_all_mew()
+            # dec_to_eth_address(x)
+            # eth_net_mew()
+            # bsc_net_mew()
+            # matic_net_mew()
+            t2 = time()
+            end_time = datetime.fromtimestamp(time(), pytz.timezone("Europe/Moscow")).strftime("%A, %B %d, %Y %H:%M:%S")
+            print(f"\n"
+                  f"      Time : {t2 - t}\n"
+                  f"Start Time : {st_time}\n"
+                  f"End   Time : {end_time}\n"
+                  f"-----------------------------------------------\n")
+
+    # [3] Check Range
+    elif x == "3":
+        # os.system('cls')  # Clear scr
+        print("MyEtherWallet | Check Range")
+        r1 = int(input("Input Starting Range :>>> "))
+        r2 = int(input("Input Ending Range   :>>> "))
+        st_time = datetime.fromtimestamp(time(), pytz.timezone("Europe/Moscow")).strftime("%A, %B %d, %Y %H:%M:%S")
+        t = time()
+        change_file = open(PROJECT_PATH + "changes.txt", "a")
+        change_file.write(f"{file_name}   Range: {r1} to {r2}\n")
+        change_file.close()
+        for x in range(r1, r2):
+            dec_to_address(x)
+            # dec_to_eth_address(x)
+            # eth_net_mew()
+            # bsc_net_mew()
+            # matic_net_mew()
+        t2 = time()
+        end_time = datetime.fromtimestamp(time(), pytz.timezone("Europe/Moscow")).strftime("%A, %B %d, %Y %H:%M:%S")
+        print(f"\n"
+              f"Start : {r1}\n"
+              f"End   : {r2}\n"
+              f"Subtraction : {r2 - r1}")  # Subtraction - Вычисление/вычитание
+        print(f"\n"
+              f"      Time : {t2 - t}\n"
+              f"Start Time : {st_time}\n"
+              f"End   Time : {end_time}\n"
+              f"-----------------------------------------------\n")
+        main()
+
+    # [4] Check Random
+    elif x == "4":
+        # os.system('cls')  # Clear scr
+        while True:
+            print("MyEtherWallet | Check Random | 0 <---> 2^256\n"
+                  "Max DECimal : 115792089237316195423570985008687907852837564279074904382605163141518161494336\n"
+                  "Max PRIV-Key: fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364140\n"
+                  "Max PUB-Key : 0x80C0dbf239224071c59dD8970ab9d542E3414aB2\n")
+            r1 = int(input("Input Starting Range :>>> "))
+            r2 = int(input("Input Ending Range   :>>> "))
+            r3 = int(input("Input Number         :>>> "))
+            change_file = open(PROJECT_PATH + "changes.txt", "a")
+            change_file.write(f"{file_name}   Random: {r1} to {r2}, count - {r3}\n")
+            change_file.close()
+            st_time = datetime.fromtimestamp(time(), pytz.timezone("Europe/Moscow")).strftime("%A, %B %d, %Y %H:%M:%S")
+            t = time()
+            for x in range(r3):
+                i = random.randint(r1, r2)  # (0, 2 ** 256) default
+                dec_to_address(i)
+                # dec_to_eth_address(i)
+                # eth_net_mew()
+                # bsc_net_mew()
+                # matic_net_mew()
+            t2 = time()
+            end_time = datetime.fromtimestamp(time(), pytz.timezone("Europe/Moscow")).strftime("%A, %B %d, %Y %H:%M:%S")
+            print(f"\n"
+                  f"      Time : {t2 - t}\n"
+                  f"Start Time : {st_time}\n"
+                  f"End   Time : {end_time}\n"
+                  f"-----------------------------------------------\n")
+            main()
+
+    # [5] Delete Output #  clear_files()
+    elif x == "5":
+        yes = 'y' in input("(Y)es/(N)o: ").lower().strip()
+        if not yes:
+            print("Not confirmed")
+        print('Deleting all .txt files')
+        files_in_directory = os.listdir(PROJECT_PATH)
+        filtered_files = [file for file in files_in_directory if file.endswith(".txt")]
+        for file in filtered_files:
+            if file not in ("input.txt", "changes.txt"):
+                path_to_file = os.path.join(PROJECT_PATH, file)
+                os.remove(path_to_file)
+        main()
+
+    else:
+        print("Command not Recognized")
+        main()
+
+
+if __name__ == '__main__':
+    main()
+
+
+# def single_mew(public_key):  # [5] PUB-Key
+#    r = requests.get(f"https://tokenbalance.mewapi.io/eth?address={public_key}")
+#    tr = r.text[13:-4].split("\"},{\"")
+#    for i in tr:
+#        print(i[11:53], int(i[66:], 16))

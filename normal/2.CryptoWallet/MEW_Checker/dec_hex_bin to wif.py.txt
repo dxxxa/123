@@ -1,0 +1,39 @@
+import secp256k1Crypto
+from Crypto.Hash import keccak
+
+
+
+
+def get_eth_addr(private_key_str):
+    if private_key_str is None:
+        private_key = secp256k1Crypto.PrivateKey()
+        private_key_str = private_key.serialize()
+    else:
+        private_key_bytes = bytes.fromhex(private_key_str)
+        private_key = secp256k1Crypto.PrivateKey(private_key_bytes)
+    public_key_bytes = private_key.pubkey.serialize(compressed=False)
+    public_key_str = public_key_bytes.hex()
+    keccak_hash = keccak.new(digest_bits=256)
+    keccak_hash.update(public_key_bytes[1:])
+    h = keccak_hash.hexdigest()
+    address = '0x' + h[-40:]
+    return {
+        "private_key": private_key_str,
+        "public_key": public_key_str,
+        "address": address
+    }
+
+
+private_key_str = "1"
+#get_eth_addr()
+
+print(get_eth_addr)
+
+
+
+#number = input("DECimal  :").strip()
+
+#number = 3
+#print("DECimal  :", number)
+#PRIV_Key = number.to_bytes(32, byteorder='big').hex()    
+#print("PRIV-Key :", PRIV_Key)

@@ -1,0 +1,11 @@
+import turtle as t
+t.setposition(40,-50)
+t.bgcolor("black")
+color=("olive","firebrick")
+for i in range(100):
+    t.speed(0)
+    t.pencolor(color[i%2])
+    t.pensize(1)
+    t.circle(100-i,400)
+    t.forward(i)
+t.done()

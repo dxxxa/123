@@ -1,0 +1,22 @@
+from turtle import *
+import time
+
+title("SIMPLE DESIGN")
+penup()
+goto(-10,10)
+pendown()
+speed(10)
+bgcolor("black")
+color("red")
+pensize(2)
+
+
+for i in range(8):
+    right(90)
+    for i in range(9):
+        forward(120)
+        right(85)
+
+
+hideturtle()
+time.sleep(3)

@@ -1,0 +1,12 @@
+import turtle as t
+t.bgcolor("black")
+t.right(90)
+t.forward(150)
+def fleur():
+    for i in range(200):
+        t.pencolor("white")
+        t.left(200)
+        t.circle(200-i,80)
+        t.hideturtle()
+t.speed(0)
+fleur()

@@ -1,0 +1,46 @@
+######################### ДЛЯ Python 3+ (доделать)
+# https://github.com/BenNeumann/Bitcoin_WIF_Private_Key_to_Decimal_Format
+# Узнайте, какое десятичное число у вашего закрытого ключа биткойнов
+# myPrivateKey = "5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAvUcVfH" # put your bitcoin WIF format private key here!
+
+import base58
+import hashlib
+
+myPrivateKey = str(input("PrivateKey :>>> ").strip())
+
+def WIF2DEC(privatekey):
+	privHex = base58.b58decode(privatekey).hex()
+	privRawHex = privHex[0: len(privHex)-8]
+	privRawHex2 = privHex[2: len(privHex)-8]
+    
+	print (f"    privHex : {privHex}\n"
+            f"privRawHex  : {privRawHex}\n"
+            f"privRawHex2 : {privRawHex2}\n")
+    
+	checksum = privHex[len(privHex)-8: len(privHex)]
+	print (f"checksum : {checksum}")
+    
+	decodePrivRawHex = str(privRawHex).encode('utf-8')
+	print (f"decodePrivRawHex: {decodePrivRawHex}")
+    
+	SHA256a = hashlib.new('sha256',decodePrivRawHex).digest()
+	SHA256b = hashlib.new('sha256',SHA256a).digest()
+	print(f"SHA256A :{SHA256a}")
+	print(f"SHA256B :{SHA256b}")
+    
+	checksumCompare = SHA256b.hex()
+	#checksumCompare = SHA256b.hex() #encode('hex')[0:8]
+	print (f"checksumCompare : {checksumCompare}")
+    
+    
+	#if checksumCompare == checksum :  #  НЕ СОВПАДАЮТ!!!
+	#	privatekeyDecimal = int(privRawHex2,16)
+	#	return ('Your private key dcimal number is: '+str(privatekeyDecimal))
+	#else:
+	#	return ('Not valid bitcoin private key! ')
+    
+    # КАСТЫЛИ!!!
+	privatekeyDecimal = int(privRawHex2,16)
+	return ('Your DECimal is : '+str(privatekeyDecimal))
+    
+print (WIF2DEC(myPrivateKey))

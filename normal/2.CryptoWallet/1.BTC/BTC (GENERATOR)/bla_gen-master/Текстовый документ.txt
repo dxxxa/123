@@ -1,0 +1,22 @@
+#https://github.com/Scrince/bla_gen
+#Генератор устаревших биткойн-адресов (BLA).
+
+#Случайно сгенерированные устаревшие адреса биткойнов будут выведены в файл .txt с пометкой (data.txt)
+#в каталоге, из которого был запущен генератор.py или genV2.py.
+
+#Адрес, созданный с помощью устаревшего кода (generator.py), будет выводиться в следующем формате:
+#(* были вставлены в адрес только для примера)
+
+#Address: 1NPwP5Tr81ELjjycjq9Hqcs6**********
+#Privkey: 5KkZRgm8jSpBEMPT68aShN2fecCVjVcQ2zzkD46y7**********
+#Address: 1BZAvc9vatGJ4nQeAi6k5AX6**********
+#Privkey: 5JtVEcC5GHS6wQD566EQhRGfSL84how1rx9EbhzqS**********
+
+
+#Адреса, созданные с помощью обновленного (genV2.py), будут выведены в новом формате:
+#(* были вставлены в адрес только для примера)
+
+#1NPwP5Tr81ELjjycjq9Hqcs6**********
+#5KkZRgm8jSpBEMPT68aShN2fecCVjVcQ2zzkD46y7**********
+#1BZAvc9vatGJ4nQeAi6k5AX6**********
+#5JtVEcC5GHS6wQD566EQhRGfSL84how1rx9EbhzqS**********

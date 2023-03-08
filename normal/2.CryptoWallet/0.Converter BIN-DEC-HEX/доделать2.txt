@@ -1,0 +1,20 @@
+def bin():
+        bin_to_dec = int(num ,2)
+        bin_to_hex = hex(int(num ,2))
+        print(bin_to_dec)
+        print(bin_to_hex)
+
+def dec():
+        dec_to_hex = hex(int(num))
+        dec_to_bin = bin(int(num))
+        print(dec_to_hex)
+        print(dec_to_bin)
+
+def hex():
+        hex_to_dec = int(num ,16)
+        hex_to_bin = bin(int(num ,16))
+        print(hex_to_dec)
+        print(hex_to_bin)
+
+num = input(">>>")
+bin(num)
