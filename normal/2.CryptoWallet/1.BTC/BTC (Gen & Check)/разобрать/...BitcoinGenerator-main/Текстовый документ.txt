@@ -1,7 +1,0 @@
-https://github.com/L1ghtM4n/BitcoinGenerator
-Генерировать и проверять баланс биткойн-адресов
-Если найдет кошелек с балансом в папку Wallet записывает его!!!
-
-P.S. banner.txt должен быть на рабочем столе!!!
-
-1HKJHshg124Hu141kU41u241g2uU zero balance ...

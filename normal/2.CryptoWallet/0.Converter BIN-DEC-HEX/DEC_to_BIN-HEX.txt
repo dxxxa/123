@@ -1,9 +1,0 @@
-while True:
-        inp = input(">>> ")
-        print(inp)
-
-        Dec_to_bin = bin(int(inp))
-        print (" DEC to BIN : " , Dec_to_bin)
-
-        Dec_to_hex = hex(int(inp))
-        print(" DEC to HEX : ", Dec_to_hex)

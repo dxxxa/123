@@ -1,1 +1,0 @@
-https://digitology.tech/docs/python_3/library/turtle.html#turtle.shape
