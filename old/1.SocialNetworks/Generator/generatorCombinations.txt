@@ -1,0 +1,25 @@
+# Генератор комбинаций с записью в файл
+
+#Вариант 1
+
+import itertools
+
+for i in itertools.product('01', repeat=8): # (01 значения) (repeat=8 кол-во символов)
+    print(''.join(i)) # Выводим на экран
+    
+    f = open("filePASS.txt", "a") # Открываем файл в режиме запись
+    print((''.join(i)), file = f) # Выводим "Строка" в файл
+   
+##############################################
+#Вариант 2
+
+import itertools
+res = itertools.product('01', repeat=8)
+
+with open('01x16.txt', 'w') as f:
+    for group in res:
+        word = ''.join(group)
+        f.write(word+'\n')
+        print(word)
+
+##############################################

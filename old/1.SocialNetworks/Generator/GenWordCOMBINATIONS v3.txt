@@ -1,0 +1,21 @@
+import random
+import time
+
+print('Generator case of letters')
+s = input('Введите слово: ')
+t1 = time.time()
+l = []
+a = [[random.randint(0, 1) for i in range(len(s))] for j in range(len(s) * 1000)]
+for i in a:
+    n = list(s)
+    for j in range(len(i)):
+        n[j] = n[j].lower() if not i[j] else n[j].upper()
+    l.append("".join(n))
+
+
+print(f"Количество вариантов: {len(set(l))}. ")
+print(*sorted(set(l))[::-1], sep="\n")
+print("Количество вариантов" , ("СОВПАДАЕТ" if 2 ** len(s) == len(set(l)) else "НЕ СОВПАДАЕТ"))
+
+t2 = time.time()
+print(t2 - t1)

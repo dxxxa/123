@@ -1,0 +1,3 @@
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+[print(alphabet[0:i].upper(), end = '\n') for i in range(1, len(alphabet)+1)]

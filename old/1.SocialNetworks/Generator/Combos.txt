@@ -1,0 +1,7 @@
+from string import ascii_lowercase
+word = ago
+combos = []
+for i in xrange(len(word))
+    for l in ascii_lowercase
+        combos.append( word[i]+l+word[i+1] )
+print combos
