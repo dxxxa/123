@@ -1,0 +1,35 @@
+# https://zelenka.guru/threads/3471093/?ysclid=lbjcptofr2144639751
+
+import configparser                                  #
+import json                                          #
+from telethon.sync import TelegramClient             # Возможно я добавил что-то лишнее, впадлу проверять
+from telethon import connection, functions, types    # 
+from datetime import date, datetime                  #
+
+
+# классы для работы с каналами 
+from telethon.tl.functions.channels import CreateChannelRequest, CheckUsernameRequest, UpdateUsernameRequest
+from telethon.tl.types import InputChannel, InputPeerChannel
+
+# авторизация через https://my.telegram.org/
+api_id=input("Введи api: ")
+api_hash=input("Введи hash: ")
+name=input("Введи любое имя: ") 
+
+client = TelegramClient(name, api_id, api_hash)      #авторизация
+client.start()                                       #старт клиента
+
+namechannel = input("Введи название канала: ")
+descrchannel = input("Введите описание канала: ")
+linkchannel = input("Введи адрес телеграмм канала: ") # без "@"
+
+createdPrivateChannel = client(CreateChannelRequest(namechannel,descrchannel,megagroup=False)) #сначала создание приватного канала для функции ниже
+
+#Превращение приватного канала в публичный функция ниже
+newChannelID = createdPrivateChannel.__dict__["chats"][0].__dict__["id"]                    #создание нового id канала
+newChannelAccessHash = createdPrivateChannel.__dict__["chats"][0].__dict__["access_hash"]   #создание нового хэша канала
+desiredPublicUsername = linkchannel                                                         #линк канала
+
+checkUsernameResult = client(CheckUsernameRequest(InputPeerChannel(channel_id=newChannelID, access_hash=newChannelAccessHash), desiredPublicUsername))
+if(checkUsernameResult==True): #вроде проверка на доступность линка, я хз
+    publicChannel = client(UpdateUsernameRequest(InputPeerChannel(channel_id=newChannelID, access_hash=newChannelAccessHash), desiredPublicUsername))

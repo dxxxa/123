@@ -1,0 +1,14 @@
+https://translated.turbopages.org/proxy_u/en-ru.ru.f20b8a92-6398a1e4-231874a3-74722d776562/https/stackoverflow.com/questions/66994443/telethon-how-to-get-list-of-all-channels-a-number-is-member-of
+
+
+async def main():
+    client = TelegramClient(username, api_id, api_hash)
+    await client.connect()
+    print("---------Channels---------------")
+    async for dialog in client.iter_dialogs():
+        if dialog.is_channel:
+            print(f'{dialog.id}:{dialog.title}')
+
+if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

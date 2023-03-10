@@ -1,0 +1,14 @@
+virtualenv
+nose
+sphinx
+Flask
+Flask-API
+bitcoin
+bitcoinlib
+pybitcointools
+python-bitcoinlib
+HDWallet
+HDKey
+pywallet
+coinbase
+blockchain
